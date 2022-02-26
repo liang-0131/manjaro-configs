@@ -16,12 +16,6 @@ sudo pacman -S qv2ray
 
 ### 终端代理
 - [配置](https://github.com/liang-0131/terminal-proxy)
-### neovim
-```shell
-# nvim
-sudo pacman -S neovim
-```
-
 ### 输入法
 安装：
 - [五笔输入法](http://wp02.ysepan.com/)    
@@ -78,6 +72,55 @@ sudo pacman -S yay
 ```
 
 ## 应用安装
+### neovim
+```shell
+# nvim
+sudo pacman -S neovim
+```
+
+### alacritty终端
+```shell
+sudo pacman -S alacritty
+```
+
+配置：
+`~/.config/alacritty/alacritty.yml`
+[配色](https://github.com/alacritty/alacritty/wiki/Color-schemes)
+[字体](https://github.com/liang-0131/neovim/tree/main/fonts)
+更换默认终端
+- ![](https://raw.githubusercontent.com/free-150/For-PicGo/main/202202261436311.png)
+### tmux
+安装：
+```shell
+sudo pacman -S tmux
+```
+
+配置oh-my-tmux
+```shell
+ cd
+ git clone https://github.com/gpakosz/.tmux.git
+ ln -s -f .tmux/.tmux.conf
+ cp .tmux/.tmux.conf.local .
+```
+生效
+`tmux source-file ~/.tmux.conf`
+
+随终端自动启动
+`nvim ~/.bashrc`
+```shell
+# tmux自启
+if [[ -z "$TMUX" ]] ;then
+    ID="`tmux ls | grep -vm1 attached | cut -d: -f1`" # get the id of a deattached session
+    if [[ -z "$ID" ]] ;then # if not available create a new one
+        tmux new-session
+    else
+        tmux attach-session -t "$ID" # if available attach to it
+    fi
+
+fi
+```
+
+[参考](https://blog.csdn.net/weixin_30532987/article/details/99480157)
 
 ### syncthing
 安装
